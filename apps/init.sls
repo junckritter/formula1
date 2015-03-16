@@ -3,6 +3,7 @@ apps-common-deps:
     - pkgs:
       - nodejs # asset compilation
       - libpq-dev # pg gem
+      - libcurl4-openssl-dev # libcurl based gems
 
 logrotate:
   pkg:
