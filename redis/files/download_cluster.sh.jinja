@@ -1,0 +1,5 @@
+set -e
+wget https://github.com/antirez/redis/archive/{{ version }}.tar.gz -O redis-dist.tar.gz
+tar xzf redis-dist.tar.gz
+cd redis-{{ version }}
+make

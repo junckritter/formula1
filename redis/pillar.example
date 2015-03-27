@@ -5,6 +5,15 @@ redis:
     - 0.0.0.0
   dir: /var/lib/redis/
 
+redis-cluster:
+  version: 3.0.0-rc6
+  ports:
+    - 7000
+    - 7001
+    - 7002
+  dir: /var/lib/redis-cluster/
+  unicast: 'redis-cluster-* or app-backend' # compound for cluster nodes
+
 # Following configuration is only needed for elasticsearch.backup sls
 
 aws:
