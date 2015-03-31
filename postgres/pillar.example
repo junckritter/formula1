@@ -1,0 +1,6 @@
+aws:
+  access_key: <access-key>
+  secret_key: <secret-key>
+
+postgres_backup:
+  s3_bucket: <s3-bucket-name> # no s3:// here

@@ -1,0 +1,7 @@
+sidekiq:
+  - searchd:
+    environment: production
+    app: /home/searchd/deploy/current
+  - luigi:
+    environment: production
+    app: /home/luigi/deploy/current

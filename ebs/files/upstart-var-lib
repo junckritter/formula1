@@ -1,0 +1,14 @@
+# File /etc/init/mounted-var-lib.conf
+
+# mounted-var-lib - Binds /var/lib to /data/lib/
+
+description     "Binds /var/lib to /data/lib"
+
+start on mounted MOUNTPOINT=/data
+
+task
+
+script
+    test -d /data/var || `mkdir -m 1777 /data/var; cp -r /var/* /data/var/`
+    mount --bind /data/var /var
+end script

@@ -1,0 +1,18 @@
+apps:
+  searchd:
+    domain: searchd.co
+    environment: staging # default is production
+    www: False # redirects to www. by default (False = redirect to non-www, None = do not redirect at all)
+    http_allowed_domains:
+      - api.searchd.co
+      - assets.searchd.co
+    ssl_key: |
+      -----BEGIN PRIVATE KEY-----
+      ABC=
+      -----END PRIVATE KEY-----
+    ssl_cert: |
+      -----BEGIN CERTIFICATE-----
+      ABC=
+      -----END CERTIFICATE-----
+    deploy-keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDMV7sYg9GH4+wDWi+ZV83dRmiaQK5QxTPhtRBhaxCfx49cAgUFHEeNgkIs/SdkIzLKgDN0GrDHshpIDt4aGj7Ate+bly+GgAz8wpWIQeRLlwfSvcyf6tFBKvBq/9Haml4kUwsejju8CXif5LBCkuzFCj55mKAwVkbUS71z5RC5plSu3zPxxBNdH+MKnlkgUEg93KgoS2DzngOptmhRQ0ER37MxD8rLumW5jZ/BdeD4ottj4oEaEC8YSvMbrC3R5it3WWLImUWq9ia/FddqG1FnznrjAk3AGoBBqul+voGPHle6/xKNvO/Gk46hpZATj4UEqdqYUMe0chd4iUEaD9Pb johno@Jans-Mac-mini.local

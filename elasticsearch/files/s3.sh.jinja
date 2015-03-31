@@ -1,0 +1,15 @@
+{% set conf = pillar.get("elastic_backup", {}) %}
+{% set aws = pillar.get("aws", {}) %}
+
+curl -XPUT 'http://localhost:9200/_snapshot/s3_backups' -d '{
+    "type": "s3",
+    "settings": {
+        "bucket": "{{ conf.get('s3_bucket') }}",
+        "region": "{{ aws.get('region') }}",
+        "access_key": "{{ aws.get('access_key') }}",
+        "secret_key": "{{ aws.get('secret_key') }}",
+        "compress": true
+    }
+}'
+
+exit $?

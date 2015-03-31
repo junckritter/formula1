@@ -1,0 +1,4 @@
+extra-firewall-rules:
+  - allow 8080/tcp
+  - allow 12345/tcp
+

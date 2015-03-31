@@ -1,0 +1,16 @@
+[DEFAULT]
+
+ignoreip = 127.0.0.1/8
+bantime  = 3600
+maxretry = 3
+destemail = root@localhost
+action = %(action_)s
+
+[ssh]
+
+enabled  = true
+port     = ssh
+filter   = sshd
+logpath  = /var/log/auth.log
+maxretry = 3
+banaction = ufw-ssh

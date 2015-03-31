@@ -1,0 +1,4 @@
+# latest ruby is installed by default
+rubies:
+  - 2.1.1 # first ruby in list is declared as default
+  - 2.0.0-p451

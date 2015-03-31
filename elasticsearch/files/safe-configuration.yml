@@ -1,0 +1,69 @@
+{% set safe = salt['pillar.get']('elasticsearch:safe', true) %}
+{% set cluster_name = salt['pillar.get']('elasticsearch:cluster_name', 'elasticsearch') %}
+{% set dynamic_mapping = salt['pillar.get']('elasticsearch:dynamic_mapping', 'false') %}
+{% set auto_create_index = salt['pillar.get']('elasticsearch:auto_create_index', 'false') %}
+{% set aws =  salt['pillar.get']('elasticsearch:aws', false) %}
+{% set gce =  salt['pillar.get']('elasticsearch:gce', false) %}
+{% set data =  salt['pillar.get']('elasticsearch:data', 'true') %}
+{% set unicast =  salt['pillar.get']('elasticsearch:unicast', false) %}
+
+cluster.name: {{ cluster_name }}
+node.name: {{ grains['id'] }}
+node.data: {{ data }}
+
+{% if safe %}
+bootstrap.mlockall: true
+
+# make sure we don't get OOM
+indices.fielddata.cache.size: 50%
+
+# Based on https://groups.google.com/forum/#!topic/elasticsearch/L07E8A1_S-0
+
+# Require explicit index creation
+action.auto_create_index: {{ auto_create_index }}
+
+# Protect against accidental close/delete operations
+# on all indices. You can still close/delete individual
+# indices
+action.disable_close_all_indices: true
+action.disable_delete_all_indices: true
+
+# Disable ability to shutdown nodes via REST API
+action.disable_shutdown: true
+
+# Disable automatic mapping creation
+index.mapper.dynamic: {{ dynamic_mapping }}
+
+script.disable_dynamic: false
+{% endif %}
+
+{% if aws or gce %}
+cloud:
+{% if aws %}
+    aws:
+        access_key: {{ salt['pillar.get']('elasticsearch:access_key') }}
+        secret_key: {{ salt['pillar.get']('elasticsearch:secret_key') }}
+        region: us-east-1
+
+discovery:
+    type: ec2
+    ec2:
+        groups: {{ salt['pillar.get']('elasticsearch:aws_groups') }}
+{% endif %}
+{% if gce %}
+    gce:
+        project_id: {{ salt['pillar.get'](gce:project_id) }}
+        zone: {{ salt['pillar.get'](gce:zone) }}
+discovery:
+    type: gce
+{% endif %}
+{% endif %}
+
+{% if unicast %}
+discovery.zen.ping:
+  multicast.enabled: false
+  unicast.hosts:
+{%- for server, addrs in salt['mine.get'](unicast, 'network.ip_addrs', expr_form='pcre').items() %}
+    - {{ addrs[0] }}
+{%- endfor %}
+{%- endif %}

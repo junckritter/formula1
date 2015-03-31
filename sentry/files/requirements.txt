@@ -1,0 +1,6 @@
+sentry
+boto
+psycopg2
+django-redis-cache
+hiredis
+django_ses

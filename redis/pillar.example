@@ -1,0 +1,16 @@
+redis:
+  port: 6379
+  bind:
+    - 127.0.0.1
+    - 0.0.0.0
+  dir: /var/lib/redis/
+
+# Following configuration is only needed for elasticsearch.backup sls
+
+aws:
+  region: eu-west-1
+  access_key: <access-key>
+  secret_key: <secret-key>
+
+redis_backup:
+  s3_bucket: <s3-bucket-name> # no s3:// here or it will fail

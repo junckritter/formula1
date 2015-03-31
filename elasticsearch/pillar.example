@@ -1,0 +1,19 @@
+# safe/strict config is on by default
+
+elasticsearch:
+  version: 1.1                              # version of official repository to use
+  safe: False                               # disable safe configuration defaults (see files/safe-configuration.yml)
+  cluster_name: elasticsearch               # custom cluster name
+  es_heap_size: 2g                          # custom heap size (default is 50% of available ram
+  unicast: 'search-cluster-* or search-www' # compound for cluster nodes in unicast discovery mode
+
+
+aws:
+  region: eu-west-1
+  access_key: <access-key>
+  secret_key: <secret-key>
+
+# Following configuration is only needed for elasticsearch.backup sls
+
+elastic_backup:
+  s3_bucket: <s3-bucket-name> # no s3:// here or it will fail, also no / character in name

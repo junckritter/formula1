@@ -1,0 +1,2 @@
+sphinxsearch:
+  pkg.installed

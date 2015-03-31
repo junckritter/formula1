@@ -1,0 +1,14 @@
+# File /etc/init/mounted-mnt.conf
+
+# mounted-mnt - Binds /var to /mnt/var
+
+description     "Binds /var to /mnt/var"
+
+start on mounted MOUNTPOINT=/mnt
+
+task
+
+script
+    test -d /mnt/var || `mkdir -m 1777 /mnt/var; cp -r /var/* /mnt/var/`
+    mount --bind /mnt/var /var
+end script

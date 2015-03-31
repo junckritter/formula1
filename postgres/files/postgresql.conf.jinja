@@ -1,0 +1,44 @@
+{% set data_dir = salt['pillar.get']('postgres:data_dir', '/var/lib/postgresql/9.3/main' ) %}
+data_directory = '{{ data_dir }}'        # use data in another directory
+hba_file = '/etc/postgresql/9.3/main/pg_hba.conf'       # host-based authentication file
+ident_file = '/etc/postgresql/9.3/main/pg_ident.conf'   # ident configuration file
+external_pid_file = '/var/run/postgresql/9.3-main.pid'                  # write an extra PID file
+unix_socket_directories = '/var/run/postgresql' # comma-separated list of directories
+
+listen_addresses = '*'      # what IP address(es) to listen on;
+port = 5432                             # (change requires restart)
+
+ssl = on
+ssl_cert_file = '/etc/ssl/certs/ssl-cert-snakeoil.pem'          # (change requires restart)
+ssl_key_file = '/etc/ssl/private/ssl-cert-snakeoil.key'         # (change requires restart)
+ssl_renegotiation_limit = 512MB
+
+temp_buffers = 16MB
+max_stack_depth = 2MB
+
+log_line_prefix = '%t '                 # special values:
+log_timezone = 'UTC'
+datestyle = 'iso, mdy'
+timezone = 'UTC'
+lc_messages = 'en_US.UTF-8'                     # locale for system error message
+lc_monetary = 'en_US.UTF-8'                     # locale for monetary formatting
+lc_numeric = 'en_US.UTF-8'                      # locale for number formatting
+lc_time = 'en_US.UTF-8'                         # locale for time formatting
+
+default_text_search_config = 'pg_catalog.english'
+default_statistics_target = 50
+maintenance_work_mem = {{ ((grains.mem_total|int) / 16)|round|int }}MB
+# constraint_exclusion = off
+checkpoint_completion_target = 0.9
+effective_cache_size = {{ (((grains.mem_total|int) * 3) / 4)|round|int }}MB
+work_mem = {{ ((grains.mem_total|int) / 100) |round|int }}MB
+wal_buffers = 8MB
+checkpoint_segments = 16
+shared_buffers = {{ ((grains.mem_total|int) / 4)|round|int }}MB
+max_connections = 100
+
+
+
+
+
+

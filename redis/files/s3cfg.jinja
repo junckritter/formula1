@@ -1,0 +1,5 @@
+{% set aws = pillar.get("aws", {}) %}
+[default]
+access_key = {{ aws.get('access_key') }}
+secret_key = {{ aws.get('secret_key') }}
+bucket_location = {{ aws.get('region') }}

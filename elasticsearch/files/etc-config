@@ -1,0 +1,6 @@
+{% set es_heap_size = salt['pillar.get']('elasticsearch:es_heap_size', '{}m'.format(grains['mem_total'] // 2) ) %}
+{% set data_dir = salt['pillar.get']('elasticsearch:data_dir', '/var/lib/elasticsearch/' ) %}
+
+ES_HEAP_SIZE={{ es_heap_size }}
+MAX_LOCKED_MEMORY=unlimited
+DATA_DIR={{ data_dir }}
