@@ -52,8 +52,8 @@ discovery:
 {% endif %}
 {% if gce %}
     gce:
-        project_id: {{ salt['pillar.get'](gce:project_id) }}
-        zone: {{ salt['pillar.get'](gce:zone) }}
+        project_id: {{ salt['pillar.get']('gce:project_id') }}
+        zone: {{ salt['pillar.get']('gce:zone') }}
 discovery:
     type: gce
 {% endif %}

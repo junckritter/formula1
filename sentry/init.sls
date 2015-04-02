@@ -3,6 +3,7 @@ reactor_packages:
         - pkgs:
             - libevent-dev
             - libpq-dev
+            - libxslt1-dev
             - git-core
             - python-dev
             - python-pip
@@ -27,3 +28,7 @@ sentry-supervisor-config:
     - name: /etc/supervisor/conf.d/sentry.conf
     - source: salt://sentry/files/sentry-supervisor.conf
 
+sentry-log-dir:
+  file.directory:
+    - name: /var/log/sentry
+    - user:
