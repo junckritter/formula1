@@ -31,18 +31,24 @@ ca-present:
     - name: /root/docker/ca.pem
     - makedirs: True
     - source: {{ conf.get('ca_path') }}
+    - watch_in:
+      service: docker
 
 server-cert-present:
   file.managed:
     - name: /root/docker/server-cert.pem
     - makedirs: True
     - source: {{ conf.get('server_cert_path') }}
+    - watch_in:
+      service: docker
 
 server-key-present:
   file.managed:
     - name: /root/docker/server-key.pem
     - makedirs: True
     - source: {{ conf.get('server_key_path') }}
+    - watch_in:
+      service: docker
 
 docker-configuration:
   file.managed:
