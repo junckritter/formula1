@@ -55,4 +55,8 @@ docker-configuration:
 docker-service:
   service.running:
     - name: docker
-    - enable: True
+    - enable:
+
+allow-docker-in-firewall:
+  cmd.run:
+    - name: ufw allow to any port 2375
