@@ -15,7 +15,7 @@ docker-repo:
     pkgrepo.managed:
       - repo: 'deb http://get.docker.io/ubuntu docker main'
       - file: '/etc/apt/sources.list.d/docker.list'
-      - key_url: salt://docker/docker.pgp
+      - key_url: salt://docker/files/docker.pgp
       - require_in:
           - pkg: lxc-docker
       - require:
