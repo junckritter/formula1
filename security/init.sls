@@ -82,17 +82,6 @@ net.ipv4.conf.default.secure_redirects:
   sysctl.present:
     - value: 0
 
-# Host only (we're not a router)
-net.ipv4.ip_forward:
-  sysctl.present:
-    - value: 0
-net.ipv4.conf.all.send_redirects:
-  sysctl.present:
-    - value: 0
-net.ipv4.conf.default.send_redirects:
-  sysctl.present:
-    - value: 0
-
 # Turn on execshild
 kernel.randomize_va_space:
   sysctl.present:
