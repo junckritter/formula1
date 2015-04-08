@@ -26,6 +26,11 @@ lxc-docker:
     - require:
       - pkg: docker-dependencies
 
+docker-service:
+  service.running:
+    - name: docker
+    - enable: True
+
 ca-present:
   file.managed:
     - name: /root/docker/ca.pem
@@ -58,10 +63,14 @@ docker-configuration:
     - watch_in:
       service: docker
 
-docker-service:
-  service.running:
-    - name: docker
-    - enable:
+docker-memory-ulimit:
+  file.line:
+    name: /etc/init/docker.conf
+    content: ulimit -l unlimited
+    mode: ensure
+    after: script
+    watch_in:
+      service: docker
 
 allow-docker-in-firewall:
   cmd.run:
