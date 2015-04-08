@@ -1,10 +1,2 @@
---- /etc/init/docker.conf       2015-04-08 04:17:51.973138683 -0500
-+++ /etc/init/docker.conf       2015-04-08 04:17:45.517199786 -0500
-@@ -31,6 +31,7 @@
- end script
-
- script
-+       ulimit -l unlimited
-        # modify these in /etc/default/$UPSTART_JOB (/etc/default/docker)
-        DOCKER=/usr/bin/$UPSTART_JOB
-        DOCKER_OPTS=
+33a34
+>       ulimit -l unlimited
