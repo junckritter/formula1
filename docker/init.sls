@@ -37,7 +37,7 @@ ca-present:
     - makedirs: True
     - source: {{ conf.get('ca_path') }}
     - watch_in:
-      service: docker
+      - service: docker
 
 server-cert-present:
   file.managed:
@@ -45,7 +45,7 @@ server-cert-present:
     - makedirs: True
     - source: {{ conf.get('server_cert_path') }}
     - watch_in:
-      service: docker
+      - service: docker
 
 server-key-present:
   file.managed:
@@ -53,7 +53,7 @@ server-key-present:
     - makedirs: True
     - source: {{ conf.get('server_key_path') }}
     - watch_in:
-      service: docker
+      - service: docker
 
 docker-configuration:
   file.managed:
@@ -61,16 +61,16 @@ docker-configuration:
     - template: jinja
     - source: salt://docker/files/defaults.conf
     - watch_in:
-      service: docker
+      - service: docker
 
 docker-memory-ulimit:
   file.line:
-    name: /etc/init/docker.conf
-    content: ulimit -l unlimited
-    mode: ensure
-    after: script
-    watch_in:
-      service: docker
+    - name: /etc/init/docker.conf
+    - content: ulimit -l unlimited
+    - mode: ensure
+    - after: script
+    - watch_in:
+      - service: docker
 
 allow-docker-in-firewall:
   cmd.run:
