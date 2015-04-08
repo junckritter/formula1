@@ -64,11 +64,10 @@ docker-configuration:
       - service: docker
 
 docker-memory-ulimit:
-  file.line:
+  file.patch:
     - name: /etc/init/docker.conf
-    - content: ulimit -l unlimited
-    - mode: ensure
-    - after: script
+    - source: salt://docker/files/conf.patch
+    - hash: md5=52efbaa1a69a2fb5870fc1f6172ab454
     - watch_in:
       - service: docker
 
