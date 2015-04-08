@@ -67,7 +67,7 @@ docker-memory-ulimit:
   file.patch:
     - name: /etc/init/docker.conf
     - source: salt://docker/files/conf.patch
-    - hash: md5=52efbaa1a69a2fb5870fc1f6172ab454
+    - hash: md5=ffe65db6936071fa14e2130a1e58e803
     - watch_in:
       - service: docker
 
