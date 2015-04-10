@@ -1,4 +1,4 @@
-{{ set conf = pillar['firewall'] }}
+{% set conf = pillar['firewall'] %}
 
 ufw:
   pkg:
@@ -9,7 +9,7 @@ ufw:
 
 ufw-enable-private-network:
   cmd.run:
-    - name: ufw allow in on {% conf['private_network_interface'] %}
+    - name: ufw allow in on {{ conf['private_network_interface'] }}
 
 ufw-enable:
   cmd.run:
