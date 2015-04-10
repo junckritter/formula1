@@ -31,30 +31,6 @@ docker-service:
     - name: docker
     - enable: True
 
-ca-present:
-  file.managed:
-    - name: /root/docker/ca.pem
-    - makedirs: True
-    - source: {{ conf.get('ca_path') }}
-    - watch_in:
-      - service: docker
-
-server-cert-present:
-  file.managed:
-    - name: /root/docker/server-cert.pem
-    - makedirs: True
-    - source: {{ conf.get('server_cert_path') }}
-    - watch_in:
-      - service: docker
-
-server-key-present:
-  file.managed:
-    - name: /root/docker/server-key.pem
-    - makedirs: True
-    - source: {{ conf.get('server_key_path') }}
-    - watch_in:
-      - service: docker
-
 docker-configuration:
   file.managed:
     - name: /etc/default/docker
@@ -70,7 +46,3 @@ docker-memory-ulimit:
     - hash: md5=0f960d8d796de6195e9c0e1d633945fb
     - watch_in:
       - service: docker
-
-allow-docker-in-firewall:
-  cmd.run:
-    - name: ufw allow to any port 2375
