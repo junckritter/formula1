@@ -10,6 +10,7 @@ docker-dependencies:
       - iptables
       - ca-certificates
       - lxc
+      - linux-image-extra-$(uname -r)
 
 docker-repo:
     pkgrepo.managed:
