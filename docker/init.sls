@@ -10,7 +10,13 @@ docker-dependencies:
       - iptables
       - ca-certificates
       - lxc
-      - linux-image-extra-$(uname -r)
+
+docker-aufs-installed:
+  cmd.run:
+    - name: apt-get install -qq linux-image-extra-$(uname -r)
+    - unless: dpkg -L linux-image-extra-$(uname -r)
+    - watch_in:
+      - service: docker
 
 docker-repo:
     pkgrepo.managed:
