@@ -12,6 +12,8 @@ logstash-config:
   file.managed:
     - name: /etc/logstash/conf.d/logstash.conf
     - source: salt://elasticsearch/files/logstash.conf
+    - watch_in:
+        service: logstash
 
 logstash-vhost:
   file.managed:
