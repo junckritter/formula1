@@ -11,7 +11,7 @@ To restore:
 
 To restore:
 
-    curl -XPOST 'http://localhost:9200/_snapshot/s3_backups/<date>/_restore'
+    curl -XPOST 'http://localhost:9200/_snapshot/s3_backups/snapshot_YYYY-MM-DD/_restore'
 
 The restore process will run in the backround
 
