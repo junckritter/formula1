@@ -9,6 +9,7 @@
       user: {{ name }}
       app: {{ config['app'] }}
       environment: {{ config['environment'] }}
+      pre_start_script: {{ config['pre_start_script'] }}
 
 {{ name }}-sidekiq-sudoers:
   file.append:
@@ -17,6 +18,5 @@
     - template: jinja
     - context:
         user: {{ name }}
-        pre_start_script: {{ config['pre_start_script'] }}
 
 {% endfor %}
