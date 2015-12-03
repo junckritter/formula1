@@ -17,5 +17,6 @@
     - template: jinja
     - context:
         user: {{ name }}
+        pre_start_script: {{ config['pre_start_script'] }}
 
 {% endfor %}

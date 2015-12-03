@@ -2,6 +2,7 @@ sidekiq:
   - searchd:
     environment: production
     app: /home/searchd/deploy/current
+    pre_start_script: /home/user/maintenance.sh
   - luigi:
     environment: production
     app: /home/luigi/deploy/current
